@@ -14,7 +14,8 @@ locals {
 
 /* BUILD NETWORK */
 module "network" {
-    source                      = "./modules/network"
+    source  = "./modules/network"
+    region  = "us-central1"
 }
 
 module "securitygroups" {
@@ -28,6 +29,6 @@ module "server" {
     instance_type           = "f1-micro"
     #subnet_id               = module.network.network_subnet_id
     #security_groups         = module.securitygroups.valheim_security_groups
-    keyname                 = local.keyname
+    #keyname                 = local.keyname
     user_data               = base64encode(file("./scripts/bootstrap.sh"))
 }
