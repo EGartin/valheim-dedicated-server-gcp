@@ -30,17 +30,17 @@ You'll notice some of the taxonomy in referring to files such as `ROOT:filename`
 1. `ROOT:main.tf`: Use `curl https://ipinfo.io/ip` to obtain your IP and input it in the locals variable for `your_ip` in the this file. This is essential for you to be able to SSH from your box.  If you intend to use a bastion host, make sure you're putting in the ip for the bastion host.
 
 2. `ROOT:provider.tf` Edit file to input your unique identifiers if you're going to use service accounts for impersonation. 
-  - [GCP Terraform Docs](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference)
-  - [GCP SDK Quickstart](https://cloud.google.com/sdk/docs/quickstart#deb)
+    - [GCP Terraform Docs](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference)
+    - [GCP SDK Quickstart](https://cloud.google.com/sdk/docs/quickstart#deb)
 
 3. `ROOT:provider.tf`: Change location to data center you want. Keep in mind costs differ between data centers. 
-  - [Google Datacenters](https://cloud.google.com/about/locations/)
+    - [Google Datacenters](https://cloud.google.com/about/locations/)
 
 4. `ROOT: main.tf`: Make sure the keypair you created in IAM is properly referred to in in the locals on line 10.
 
 5. Once you've saved all your changes, open a terminal/command prompt to the location of this repository and run the following commands in succession:
-  - `terraform init`
-  - `terraform apply`
+    - `terraform init`
+    - `terraform apply`
 
   You can destroy all assets when you are completed using `terraform destroy`
 
