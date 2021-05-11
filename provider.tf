@@ -8,9 +8,9 @@
 
 # Configure the Microsoft Azure Provider
 provider "google" {
-  project     = "valheim-dedicated-server"
-  #Oregon
-  region      = "us-central1"
+  project     = "seismic-mantis-313421"
+  region      = "us-central1" #Oregon
   #zone        = "us-central1-c"
-
+  impersonate_service_account = "tr-stream-test@seismic-mantis-313421.iam.gserviceaccount.com"
+  credentials = file("./seismic-mantis-313421-cf022b7d80c1.json")
 }

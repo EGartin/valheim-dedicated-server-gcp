@@ -10,6 +10,7 @@ locals {
   uuid_four = substr(local.uuid_prefix,0,4)
 }
 
+/*
 #Dedicated IP 
 resource "azurerm_network_interface" "valheim-server-nic" {
   name                      = "valheim-server-nic"
@@ -71,3 +72,4 @@ resource "azurerm_linux_virtual_machine" "valheim-server" {
 
   
 }
+*/

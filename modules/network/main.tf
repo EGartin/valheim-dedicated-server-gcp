@@ -4,7 +4,7 @@
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
 * DATE: 2021 MAY 05
 */
-
+/*
 #RANGE 10.10.x.x VNET NETWORK
 resource "azurerm_virtual_network" "valheim-vnet" {
   name                = "valheim-vnet"
@@ -20,3 +20,4 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = var.azurerm_resource_group
   address_prefix       = "10.10.10.0/24"
 }
+*/

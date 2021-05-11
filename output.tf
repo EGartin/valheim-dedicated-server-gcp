@@ -5,7 +5,7 @@
 * DATE: 2021 MAR 01
 */
 
-
+/*
 output "public" {
     value = module.server.public_ip
 }
