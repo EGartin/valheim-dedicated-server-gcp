@@ -10,66 +10,39 @@ locals {
   uuid_four = substr(local.uuid_prefix,0,4)
 }
 
+data "google_compute_image" "ubuntu" {
+  family  = "ubuntu-1804-lts"
+  project = "ubuntu-os-cloud"
+}
+
+resource "google_compute_instance" "valheim-server" {
+  name         = "valheim-server"
+  machine_type = var.instance_type
+  zone         = var.zone
+  metadata_startup_script = var.user_data
+  boot_disk {
+    initialize_params {
+      image = data.google_compute_image.ubuntu.self_link
+      type  = var.disk-image-type
+      size  = var.disk-image-size
+    }
+  }
+
+  network_interface {
+    network = var.vpc
+    subnetwork = var.subnet_id
+
+    access_config {
+    }
+  }
+
+  service_account {
+    email = var.service_account_email
+    scopes = ["cloud-platform"]
+  }
 /*
-#Dedicated IP 
-resource "azurerm_network_interface" "valheim-server-nic" {
-  name                      = "valheim-server-nic"
-  location                  = var.azurerm_resource_location
-  resource_group_name       = var.azurerm_resource_group
-  #network_security_group_id = var.security_groups
-
-  ip_configuration {
-    name                          = "ipconfig"
-    subnet_id                     = var.subnet_id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.valheim-server-pip.id
+  labels = {
+    "Name" = "{var.owner}-quick-server"
   }
-}
-
-resource "azurerm_public_ip" "valheim-server-pip" {
-  name                         = "a-${local.uuid_four}-ip"
-  location                     = var.azurerm_resource_location
-  resource_group_name          = var.azurerm_resource_group
-  allocation_method            = "Dynamic"
-  domain_name_label            = "a-${local.uuid_four}-valheim"
-
-    lifecycle {
-      ignore_changes = [
-        name,
-        domain_name_label,
-      ]
-  }
-}
-
-
-## SERVER
-resource "azurerm_linux_virtual_machine" "valheim-server" {
-  name                          = "Valheim-Server"
-  location                      = var.azurerm_resource_location
-  resource_group_name           = var.azurerm_resource_group
-  size                       = var.instance_type
-  network_interface_ids         = [azurerm_network_interface.valheim-server-nic.id]
-
-  custom_data                   = var.user_data    
-
-  admin_username      = "odin"
-  admin_ssh_key {
-    username   = "odin"
-    public_key = var.keyname
-  }
-
-  source_image_reference {
-    publisher = var.image_publisher
-    offer     = var.image_offer
-    sku       = var.image_sku
-    version   = var.image_version
-  }
-
-  os_disk {
-    storage_account_type = "Standard_LRS"
-    caching           = "ReadWrite"
-  }
-
-  
-}
 */
+}

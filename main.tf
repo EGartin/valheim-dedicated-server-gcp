@@ -7,15 +7,18 @@
 
 locals {
     #env_type        = "PRODUCTION/TESTING/ETC"
-    keyname         = file("./seismic-mantis-313421-cf022b7d80c1.json")
+    keyname         = file("./{YOURKEYNAME}.json")
     #You can use the "get-your-ip.sh" script and then end this variable in the vars.tf
     your_ip         = "YOUR_IP/32"
+    region          = "us-central1"
+    zone            = "us-central1-a"
+    service_account_email = "{SERVICEACCOUNT}@{PROJECTNAME}.gserviceaccount.com"
 }
 
 /* BUILD NETWORK */
 module "network" {
     source  = "./modules/network"
-    region  = "us-central1"
+    region  = local.region
 }
 
 module "securitygroups" {
@@ -28,8 +31,12 @@ module "securitygroups" {
 module "server" {
     source                  = "./modules/dedicated-server"
     instance_type           = "f1-micro"
-    #subnet_id               = module.network.network_subnet_id
-    #security_groups         = module.securitygroups.valheim_security_groups
-    #keyname                 = local.keyname
-    user_data               = base64encode(file("./scripts/bootstrap.sh"))
+    zone                    = local.zone
+    vpc                     = module.network.vpc
+    subnet_id               = module.network.network_subnet_id
+    service_account_email   = local.service_account_email
+    disk-image-type         = "pd-standard"
+    disk-image-size         = 30
+    #keyname                = local.keyname
+    user_data               = file("./scripts/bootstrap.sh")
 }
