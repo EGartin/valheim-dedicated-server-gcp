@@ -19,6 +19,9 @@ I do have some ambitions to try and create something like this for all the major
 ## Prerequisites
 
   - [Google Cloud Platform Account](https://cloud.google.com/compute/)
+    - For Each Project?
+      - [Enable Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
+      - [Enable IAM Service Account Credentials API](https://console.cloud.google.com/apis/library/iamcredentials.googleapis.com)
   - [Terraform](https://www.terraform.io/downloads.html) (Tested on version 0.14.5)
 
 ## Steps
