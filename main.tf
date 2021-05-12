@@ -2,14 +2,14 @@
 * PROJECT: Valheim Dedicated Server
 * FILE: ROOT :: Main.tf
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
-* DATE: 2021 MAY 05
+* DATE: 2021 MAY 12
 */
 
 locals {
     #env_type        = "PRODUCTION/TESTING/ETC"
     keyname         = file("./seismic-mantis-313421-cf022b7d80c1.json")
     #You can use the "get-your-ip.sh" script and then end this variable in the vars.tf
-    your_ip         = "YOUR-IP/32"
+    your_ip         = "212.102.45.78/32"
 }
 
 /* BUILD NETWORK */
@@ -21,6 +21,7 @@ module "network" {
 module "securitygroups" {
     source          = "./modules/security-groups"
     your_ip         = local.your_ip
+    vpc             = module.network.vpc
 }
 
 /* BUILD SERVER */
