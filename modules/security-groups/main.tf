@@ -4,7 +4,7 @@
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
 * DATE: 2021 MAY 05
 */
-
+/*
 resource "azurerm_network_security_group" "ssh" {
   name                = "SSH"
   location            = var.azurerm_resource_location

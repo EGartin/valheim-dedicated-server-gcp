@@ -5,12 +5,6 @@
 * DATE: 2021 MAY 05
 */
 
-variable "azurerm_resource_group"{
-    default = ""
-}
-variable "azurerm_resource_location"{
-    default = ""
-}
 variable "image_publisher" {
   description = "Name of the publisher of the image (az vm image list)"
   default     = "Canonical"
@@ -37,8 +31,12 @@ variable "hostname" {
 }
 
 variable "instance_type"    {}
-variable "subnet_id"        {}
-variable "security_groups"  {}
+variable "subnet_id"        {
+      default = ""
+}
+variable "security_groups"  {
+      default = ""
+}
 variable "iam_instance_profile" {
     default = ""
 }

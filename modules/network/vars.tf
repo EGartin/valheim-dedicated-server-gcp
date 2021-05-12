@@ -5,9 +5,3 @@
 * DATE: 2021 MAY 05
 */
 
-variable "azurerm_resource_group"{
-    default = ""
-}
-variable "azurerm_resource_location"{
-    default = ""
-}
