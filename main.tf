@@ -9,7 +9,7 @@ locals {
     #env_type        = "PRODUCTION/TESTING/ETC"
     keyname         = file("./seismic-mantis-313421-cf022b7d80c1.json")
     #You can use the "get-your-ip.sh" script and then end this variable in the vars.tf
-    your_ip         = "212.102.45.78/32"
+    your_ip         = "YOUR_IP/32"
 }
 
 /* BUILD NETWORK */
