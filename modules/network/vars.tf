@@ -5,3 +5,6 @@
 * DATE: 2021 MAY 05
 */
 
+variable "region"   {
+    default = ""
+}

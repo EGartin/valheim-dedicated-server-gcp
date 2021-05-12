@@ -10,6 +10,5 @@
 provider "google" {
   project     = "seismic-mantis-313421"
   region      = "us-central1" #Oregon
-  #zone        = "us-central1-c"
   credentials = file("./seismic-mantis-313421-cf022b7d80c1.json")
 }
