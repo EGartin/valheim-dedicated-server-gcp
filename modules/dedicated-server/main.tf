@@ -2,7 +2,7 @@
 * PROJECT: Valheim Dedicated Server
 * FILE: DEDICATED-SERVER :: Main.tf
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
-* DATE: 2021 MAY 06
+* DATE: 2021 MAY 13
 */
 locals {
   uuid = uuid()
@@ -18,6 +18,7 @@ data "google_compute_image" "ubuntu" {
 resource "google_compute_instance" "valheim-server" {
   name         = "valheim-server"
   machine_type = var.instance_type
+  allow_stopping_for_update = true
   zone         = var.zone
   metadata_startup_script = var.user_data
   boot_disk {
@@ -40,9 +41,5 @@ resource "google_compute_instance" "valheim-server" {
     email = var.service_account_email
     scopes = ["cloud-platform"]
   }
-/*
-  labels = {
-    "Name" = "{var.owner}-quick-server"
-  }
-*/
+
 }

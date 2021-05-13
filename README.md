@@ -2,7 +2,7 @@
 
 ## Terraform
 
-### 2021 MAY 11
+### 2021 MAY 13
 
 ## Disclaimer/Legal
 
@@ -22,26 +22,32 @@ I do have some ambitions to try and create something like this for all the major
     - For Each Project?
       - [Enable Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
       - [Enable IAM Service Account Credentials API](https://console.cloud.google.com/apis/library/iamcredentials.googleapis.com)
+      - [GCP Service Account with JSON Key](https://cloud.google.com/iam/docs/service-accounts)
   - [Terraform](https://www.terraform.io/downloads.html) (Tested on version 0.14.5)
 
 ## Steps
 
-You'll be editing some lines in the `ROOT:main.tf` file for the local variables between line 8 and 13. Steps described below. Mileage may vary depending on what data center you try to push to.
+You'll be editing some lines in the `ROOT:vars.tf` file for the local variables between line 8 and 25. Steps described below. Mileage may vary depending on what data center you try to push to.
 
 You'll notice some of the taxonomy in referring to files such as `ROOT:filename`.  Root will be the root of the folder structure. Any modules will change the name of `ROOT` to `NETWORK` for example where there is another grouping of similarily named files.  This is a Terraform thing that some people may not be familiar with.
 
-1. `ROOT:main.tf`: Use `curl https://ipinfo.io/ip` to obtain your IP and input it in the locals variable for `your_ip` in the this file. This is essential for you to be able to SSH from your box.  If you intend to use a bastion host, make sure you're putting in the ip for the bastion host.
+1. `ROOT:vars.tf`: Use `curl https://ipinfo.io/ip` to obtain your IP and input it in the locals variable for `your_ip` in the this file. This is essential for you to be able to SSH from your box.  If you intend to use a bastion host, make sure you're putting in the ip for the bastion host.
+    - `your_ip`
+    - `region`
+    - `zone`
+    - `service_account_email`
+    - `project`
 
-2. `ROOT:provider.tf` Edit file to input your unique identifiers if you're going to use service accounts for impersonation. 
-    - [GCP Terraform Docs](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference)
-    - [GCP SDK Quickstart](https://cloud.google.com/sdk/docs/quickstart#deb)
+  - [GCP Terraform Docs](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference)
+  - [GCP SDK Quickstart](https://cloud.google.com/sdk/docs/quickstart#deb)
+  - [Google Datacenters](https://cloud.google.com/about/locations/)
 
-3. `ROOT:provider.tf`: Change location to data center you want. Keep in mind costs differ between data centers. 
-    - [Google Datacenters](https://cloud.google.com/about/locations/)
+2. `ROOT:provider.tf` Edit file to input your credentials json file after generating it for your service account. 
+   
+3. Create a public key pair and copy paste your public key into the google console in your metadata section for your project. This is so you can ssh to your virtual machine.
+    - [GCP Metadata Console Docs](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)
 
-4. `ROOT: main.tf`: Make sure the keypair you created in IAM is properly referred to in in the locals on line 10.
-
-5. Once you've saved all your changes, open a terminal/command prompt to the location of this repository and run the following commands in succession:
+4. Once you've saved all your changes, open a terminal/command prompt to the location of this repository and run the following commands in succession:
     - `terraform init`
     - `terraform apply`
 
@@ -63,7 +69,7 @@ You'll notice some of the taxonomy in referring to files such as `ROOT:filename`
 
 The server will currently build as a `e2-standard-2` (2vCPU 8GB RAM). Depending on the size of the world and how many users, you may need to adjust the size. With Terraform, it should be as simple as updating the line of code in `ROOT:main.tf` line 41 with the new sizing and re-running `terraform apply`. Make sure you stop the server and backup before doing it, just in case.
 
-f1-micro - for testing
+`f1-micro` - for testing
 
 ## Support for Infrastructure as Code
 
