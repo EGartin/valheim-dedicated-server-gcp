@@ -4,52 +4,12 @@
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
 * DATE: 2021 MAY 05
 */
-
-variable "image_publisher" {
-  description = "Name of the publisher of the image (az vm image list)"
-  default     = "Canonical"
-}
-
-variable "image_offer" {
-  description = "Name of the offer (az vm image list)"
-  default     = "UbuntuServer"
-}
-
-variable "image_sku" {
-  description = "Image SKU to apply (az vm image list)"
-  default     = "18.04-LTS"
-}
-
-variable "image_version" {
-  description = "Version of the image to apply (az vm image list)"
-  default     = "latest"
-}
-
-variable "hostname" {
-  description = "Virtual machine hostname. Used for local hostname, DNS, and storage-related names."
-  default     = "valheimsrv"
-}
-
+# server
 variable "instance_type"    {}
-variable "subnet_id"        {
-      default = ""
-}
-variable "security_groups"  {
-      default = ""
-}
-variable "iam_instance_profile" {
-    default = ""
-}
-variable "key_name" {
-    default = ""
-}
-variable "user_data" {
-    default = ""
-}
-variable "user_data_base64" {
-    default = ""
-}
-variable "depends_id"   {
-    default = ""
-}
-    
+variable "zone"      {}
+variable "disk-image-type"  {}
+variable "disk-image-size"  {}
+variable "service_account_email" {}
+variable "vpc"  {}
+variable "subnet_id"        {}
+variable "user_data" {}
