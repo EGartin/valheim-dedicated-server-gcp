@@ -6,7 +6,7 @@
 */
 
 variable "your_ip" {
-    default = "YOURIP/32"
+    default = "212.102.44.138/32"
 }
 
 variable "region"  {
@@ -18,10 +18,10 @@ variable "zone" {
 }   
 
 variable "service_account_email" {
-    default = "{SERVICE_ACCOUNT}@{PROJECT_NAME}.iam.gserviceaccount.com"
+    default = "tr-stream-test@seismic-mantis-313421.iam.gserviceaccount.com"
 }
 
 variable "project"  {
-    default = "{PROJECT_NAME}"
+    default = "seismic-mantis-313421"
 }
     

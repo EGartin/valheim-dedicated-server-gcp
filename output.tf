@@ -9,7 +9,9 @@
 output "public" {
     value = module.server.public_ip
 }
-
+output "my-email" {
+  value = data.google_client_openid_userinfo.me.email
+}
 /*
 output "public" {
     value = module.spotserver.public_ip

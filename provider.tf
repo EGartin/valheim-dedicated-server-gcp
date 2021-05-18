@@ -10,5 +10,5 @@
 provider "google" {
   project     = var.project
   region      = var.region
-  credentials = file("./{SERVICE_ACCOUNT_CREDENTIAL_FILENAME}.json")
+  credentials = file("./seismic-mantis-313421-cf022b7d80c1.json")
 }

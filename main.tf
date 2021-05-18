@@ -4,6 +4,13 @@
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
 * DATE: 2021 MAY 13
 */
+data "google_client_openid_userinfo" "me" {
+}
+
+resource "google_os_login_ssh_public_key" "cache" {
+  user =  data.google_client_openid_userinfo.me.email
+  key = file("~/.ssh/id_rsa.pub")
+}
 
 /* BUILD NETWORK */
 module "network" {
@@ -20,7 +27,7 @@ module "securitygroups" {
 /* BUILD SERVER */
 module "server" {
     source                  = "./modules/dedicated-server"
-    instance_type           = "e2-standard-2"
+    instance_type           = "f1-micro"
     zone                    = var.zone
     vpc                     = module.network.vpc
     subnet_id               = module.network.network_subnet_id
