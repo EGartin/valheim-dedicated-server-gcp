@@ -2,7 +2,7 @@
 * PROJECT: Valheim Dedicated Server
 * FILE: DEDICATED-SERVER :: Main.tf
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
-* DATE: 2021 MAY 13
+* DATE: 2021 JUN 10
 */
 locals {
   uuid = uuid()
@@ -11,7 +11,7 @@ locals {
 }
 
 data "google_compute_image" "ubuntu" {
-  family  = "ubuntu-1804-lts"
+  family  = "ubuntu-2004-lts"
   project = "ubuntu-os-cloud"
 }
 
