@@ -33,7 +33,7 @@ All critiques are welcome via the [Github Project](https://github.com/users/Elij
       - [Enable Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)
       - [Enable IAM Service Account Credentials API](https://console.cloud.google.com/apis/library/iamcredentials.googleapis.com)
       - [GCP Service Account with JSON Key](https://cloud.google.com/iam/docs/service-accounts)
-  - [Terraform](https://www.terraform.io/downloads.html) (Tested on version 0.14.5)
+  - [Terraform](https://www.terraform.io/downloads.html) (Tested on version 1.0.0)
 
 ## Steps
 
