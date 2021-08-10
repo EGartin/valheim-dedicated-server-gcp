@@ -10,8 +10,6 @@ output "public" {
     value = module.server.public_ip
 }
 
-/*
-output "public" {
-    value = module.spotserver.public_ip
+output "service-account" {
+    value = module.serviceaccount.service_account_email
 }
-*/
