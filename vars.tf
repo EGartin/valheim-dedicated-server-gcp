@@ -2,11 +2,11 @@
 * PROJECT: Valheim Dedicated Server
 * FILE: ROOT :: Vars.tf
 * AUTHOR: Elijah Gartin [elijah.gartin@gmail.com]
-* DATE: 2021 JUN 10
+* DATE: 2021 AUG 09
 */
 
 variable "your_ip" {
-    default = "{YOUR_IP_HERE}/32"
+    default = "{{ YOUR_IP }}/32"
 }
 
 variable "region"  {
@@ -17,11 +17,14 @@ variable "zone" {
     default = "us-central1-a" #IOWA A
 }   
 
-variable "service_account_email" {
-    default = "{YOUR_SERVICE_ACCOUNT_NAME}@{YOUR-PROJECT}.iam.gserviceaccount.com"
+variable "account_id" {
+    default = "valheim-sa-id"
+}
+variable "display_name" {
+    default = "valheim-service-account"
 }
 
 variable "project"  {
-    default = "{YOUR-PROJECT}"
+    default = "{{ YOUR PROJECT ID }}"
 }
     
